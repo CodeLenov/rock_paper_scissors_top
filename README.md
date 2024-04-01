@@ -1,6 +1,11 @@
 # rock_paper_scissors_top
 Rock Paper Scissors | JavaScript, CSS, HTML | Foundations Course (JavaScript, CSS, HTML, Git) | 03/05 | The Odin Project | 2024
 
+- We’re going to make an implementation of grade-school classic “rock paper scissors”.
+- If you don’t know what that is check the Wikipedia article `https://en.wikipedia.org/wiki/Rock%E2%80%93paper%E2%80%93scissors` or this `https://www.wikihow.com/Play-Rock,-Paper,-Scissors` detailed step-by-step.
+- For the moment we’re just going to play the game from the browser console, but
+- We will revisit this project in a later lesson and add a Graphical User Interface with buttons and text, so don’t forget to keep the code on GitHub!
+
 Don’t forget to commit early & often! You can reference the Commit Message lesson here!
 
 1. Start a new Git repo for your project.
