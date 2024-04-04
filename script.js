@@ -36,7 +36,7 @@ function getPlayerChoice() {
 function playRound() {
 
 	if (playerSelection === null) {
-		console.log(`You entered the undefined word\n\nPlease, RELOAD THE PAGE and\nenter one of these words: "rock", "paper" or "scissors"`);
+		console.log(`You entered the undefined word\n\nPlease, enter one of these words:\n"rock", "paper" or "scissors"`);
 	} else if (playerSelection === computerSelection) {
 		console.log(`Computer chose the "${computerSelection}"\nYou chose the "${playerSelection}"\n\nIT'S A DRAW!`);
 	} else if (
