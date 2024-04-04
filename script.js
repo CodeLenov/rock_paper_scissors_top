@@ -45,10 +45,10 @@ function playRound() {
 		(playerSelection === "scissors" && computerSelection === "paper") 
 		) {
 		console.log(`Computer chose the "${computerSelection}"\nYou chose the "${playerSelection}"\n\nYOU WIN!`);
-		return playerScore = ++playerScore;
+		playerScore = ++playerScore;
 	}	else {
 		console.log(`Computer chose the "${computerSelection}"\nYou chose the "${playerSelection}"\n\nCOMPUTER WIN!`);
-		return computerScore = ++computerScore;
+		computerScore = ++computerScore;
 	}
 
 }
@@ -78,7 +78,7 @@ function playGame() {
 	playRound();
 	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
 
-	if (computerScore = playerScore) {
+	if (computerScore === playerScore) {
 		console.log(`TOTAL SCORE\n\nIT'S A DRAW!\n\nYou can play new game\nReload the page`);
 	} else if (computerScore > playerScore) {
 		console.log(`TOTAL SCORE\n\nCOMPUTER WIN!\n\nYou can play new game\nReload the page`);
