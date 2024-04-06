@@ -1,5 +1,5 @@
-let computerSelection = getComputerChoice();
-let playerSelection = getPlayerChoice();
+let computerChoice = getComputerChoice();
+let playerChoice = getPlayerChoice();
 let computerScore = 0;
 let playerScore = 0;
 
@@ -19,14 +19,14 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 
-	const playerSelectionCaseInsensitive = prompt('Enter your choice: "rock", "paper" or "scissors"').toLowerCase();
+	const playerChoiceCaseInsensitive = prompt('Enter your choice: "rock", "paper" or "scissors"').toLowerCase();
 	
 	if ( 
-		(playerSelectionCaseInsensitive === "rock") || 
-		(playerSelectionCaseInsensitive === "paper") || 
-		(playerSelectionCaseInsensitive === "scissors")
+		(playerChoiceCaseInsensitive === "rock") || 
+		(playerChoiceCaseInsensitive === "paper") || 
+		(playerChoiceCaseInsensitive === "scissors")
 		) {
-		return playerSelectionCaseInsensitive;
+		return playerChoiceCaseInsensitive;
 	} else {
 		return null;
 	}
@@ -35,19 +35,19 @@ function getPlayerChoice() {
 
 function playRound() {
 
-	if (playerSelection === null) {
+	if (playerChoice === null) {
 		console.log(`You entered the undefined word\n\nPlease, enter one of these words:\n"rock", "paper" or "scissors"`);
-	} else if (playerSelection === computerSelection) {
-		console.log(`Computer chose the "${computerSelection}"\nYou chose the "${playerSelection}"\n\nIT'S A DRAW!`);
+	} else if (playerChoice === computerChoice) {
+		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nIT'S A DRAW!`);
 	} else if (
-		(playerSelection === "rock" && computerSelection === "scissors") || 
-		(playerSelection === "paper" && computerSelection === "rock") || 
-		(playerSelection === "scissors" && computerSelection === "paper") 
+		(playerChoice === "rock" && computerChoice === "scissors") || 
+		(playerChoice === "paper" && computerChoice === "rock") || 
+		(playerChoice === "scissors" && computerChoice === "paper") 
 		) {
-		console.log(`Computer chose the "${computerSelection}"\nYou chose the "${playerSelection}"\n\nYOU WIN!`);
+		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nYOU WIN!`);
 		playerScore = ++playerScore;
 	}	else {
-		console.log(`Computer chose the "${computerSelection}"\nYou chose the "${playerSelection}"\n\nCOMPUTER WIN!`);
+		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nCOMPUTER WIN!`);
 		computerScore = ++computerScore;
 	}
 
@@ -58,23 +58,23 @@ function playGame() {
 	playRound();
 	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
 	
-	computerSelection = getComputerChoice();
-	playerSelection = getPlayerChoice();
+	computerChoice = getComputerChoice();
+	playerChoice = getPlayerChoice();
 	playRound();
 	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
 
-	computerSelection = getComputerChoice();
-	playerSelection = getPlayerChoice();
+	computerChoice = getComputerChoice();
+	playerChoice = getPlayerChoice();
 	playRound();
 	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
 	
-	computerSelection = getComputerChoice();
-	playerSelection = getPlayerChoice();
+	computerChoice = getComputerChoice();
+	playerChoice = getPlayerChoice();
 	playRound();
 	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
 	
-	computerSelection = getComputerChoice();
-	playerSelection = getPlayerChoice();
+	computerChoice = getComputerChoice();
+	playerChoice = getPlayerChoice();
 	playRound();
 	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
 
