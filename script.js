@@ -5,11 +5,11 @@ let playerScore = 0;
 
 function getComputerChoice() {
 
-	const computerChoice = Math.random();
+	const computerChoiceRandom = Math.random();
 
-	if (computerChoice < ( 1 / 3) ) {
+	if (computerChoiceRandom < ( 1 / 3) ) {
 		return "rock";
-	} else if (computerChoice > ( 2 / 3) ) {
+	} else if (computerChoiceRandom > ( 2 / 3) ) {
 		return "scissors";
 	} else {
 		return "paper";
