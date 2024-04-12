@@ -19,28 +19,25 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 
-	const rock = document.querySelector("#rock");
-	const paper = document.querySelector("#paper");
-	const scissors = document.querySelector("#scissors");
-
-	rock.addEventListener("click", () => {
-		playRound();
-		return "rock";
-	});
-	paper.addEventListener("click", () => {
-		playRound();
-		return "paper";
-	});
-	scissors.addEventListener("click", () => {
-		playRound();
-		return "scissors";
-	});
+	const playerChoiceCaseInsensitive = prompt('Enter your choice: "rock", "paper" or "scissors"').toLowerCase();
+	
+	if ( 
+		(playerChoiceCaseInsensitive === "rock") || 
+		(playerChoiceCaseInsensitive === "paper") || 
+		(playerChoiceCaseInsensitive === "scissors")
+		) {
+		return playerChoiceCaseInsensitive;
+	} else {
+		return null;
+	}
 
 }
 
 function playRound() {
 
-	if (playerChoice === computerChoice) {
+	if (playerChoice === null) {
+		console.log(`You entered the undefined word\n\nPlease, enter one of these words:\n"rock", "paper" or "scissors"`);
+	} else if (playerChoice === computerChoice) {
 		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nIT'S A DRAW!`);
 	} else if (
 		(playerChoice === "rock" && computerChoice === "scissors") || 
@@ -90,3 +87,5 @@ function playGame() {
 	}
 	
 }
+
+playGame();
