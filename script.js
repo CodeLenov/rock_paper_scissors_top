@@ -7,6 +7,11 @@ function startGame() {
 
 	const start = document.querySelector("#start");
 
+	/*Computer need FIRST received addEventListener in getPlayerChoice
+	THEN playRound or playGame.
+	Else it hasn't playerChoice from buttons "rock", "paper", "choice".
+	SO we launch playRound or playGame in getPlayerChoice()*/ 
+
 	start.addEventListener("click", () => {
 		getComputerChoice();
 		getPlayerChoice();
@@ -36,6 +41,11 @@ function getPlayerChoice() {
 	const rock = document.querySelector("#rock");
 	const paper = document.querySelector("#paper");
 	const scissors = document.querySelector("#scissors");
+
+	/*Computer need FIRST received addEventListener in getPlayerChoice
+	THEN playRound or playGame.
+	Else it hasn't playerChoice from buttons "rock", "paper", "choice".
+	SO we launch playRound or playGame in getPlayerChoice()*/ 
 
 	rock.addEventListener("click", () => {
 		playerChoice = "rock";
