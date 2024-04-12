@@ -1,18 +1,32 @@
-let computerChoice = getComputerChoice();
-let playerChoice = getPlayerChoice();
+let computerChoice = "";
+let playerChoice = "";
 let computerScore = 0;
 let playerScore = 0;
+
+function startGame() {
+
+	const start = document.querySelector("#start");
+
+	start.addEventListener("click", () => {
+		getComputerChoice();
+		getPlayerChoice();
+	});
+
+}
 
 function getComputerChoice() {
 
 	const computerChoiceRandom = Math.random();
 
-	if (computerChoiceRandom < ( 1 / 3) ) {
-		return "rock";
-	} else if (computerChoiceRandom > ( 2 / 3) ) {
-		return "scissors";
+	if (computerChoiceRandom < (1/3) ) {
+		computerChoice = "rock";
+		return computerChoice;
+	} else if (computerChoiceRandom > (2/3) ) {
+		computerChoice = "scissors";
+		return computerChoice;
 	} else {
-		return "paper";
+		computerChoice = "paper";
+		return computerChoice;
 	}
 
 }
@@ -24,21 +38,21 @@ function getPlayerChoice() {
 	const scissors = document.querySelector("#scissors");
 
 	rock.addEventListener("click", () => {
-		playRound();
-		return "rock";
+		playerChoice = "rock";
+		playRound(computerChoice, playerChoice);
 	});
 	paper.addEventListener("click", () => {
-		playRound();
-		return "paper";
+		playerChoice = "paper";
+		playRound(computerChoice, playerChoice);
 	});
 	scissors.addEventListener("click", () => {
-		playRound();
-		return "scissors";
+		playerChoice = "scissors";
+		playRound(computerChoice, playerChoice);
 	});
 
 }
 
-function playRound() {
+function playRound(computerChoice, playerChoice) {
 
 	if (playerChoice === computerChoice) {
 		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nIT'S A DRAW!`);
@@ -90,3 +104,5 @@ function playGame() {
 	}
 	
 }
+
+startGame();
