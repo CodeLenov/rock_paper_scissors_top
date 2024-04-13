@@ -7,10 +7,10 @@ function startGame() {
 
 	const start = document.querySelector("#start");
 
-	/*Computer need FIRST received addEventListener in getPlayerChoice
-	THEN playRound or playGame.
-	Else it hasn't playerChoice from buttons "rock", "paper", "choice".
-	SO we launch playRound or playGame in getPlayerChoice()*/ 
+	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	THEN invoke logics from playRound (or playGame).
+	Else it invoke logics from playRound (or playGame) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
 
 	start.addEventListener("click", () => {
 		getComputerChoice();
@@ -42,10 +42,10 @@ function getPlayerChoice() {
 	const paper = document.querySelector("#paper");
 	const scissors = document.querySelector("#scissors");
 
-	/*Computer need FIRST received addEventListener in getPlayerChoice
-	THEN playRound or playGame.
-	Else it hasn't playerChoice from buttons "rock", "paper", "choice".
-	SO we launch playRound or playGame in getPlayerChoice()*/ 
+	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	THEN invoke logics from playRound (or playGame).
+	Else it invoke logics from playRound (or playGame) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
 
 	rock.addEventListener("click", () => {
 		playerChoice = "rock";
