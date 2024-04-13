@@ -64,17 +64,31 @@ function getPlayerChoice() {
 
 function playRound(computerChoice, playerChoice) {
 
+	const score = document.querySelector("#score");
+
 	if (playerChoice === computerChoice) {
-		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nIT'S A DRAW!`);
+		score.innerHTML = `
+			<p>Computer chose the "${computerChoice}"</br>
+			You chose the "${playerChoice}"</br></br>
+			IT'S A DRAW!</p>
+		`;
 	} else if (
 		(playerChoice === "rock" && computerChoice === "scissors") || 
 		(playerChoice === "paper" && computerChoice === "rock") || 
 		(playerChoice === "scissors" && computerChoice === "paper") 
 		) {
-		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nYOU WIN!`);
+		score.innerHTML = `
+			<p>Computer chose the "${computerChoice}"</br>
+			You chose the "${playerChoice}"</br></br>
+			YOU WIN!</p>
+		`;
 		playerScore = ++playerScore;
 	}	else {
-		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nCOMPUTER WIN!`);
+		score.innerHTML = `
+			<p>Computer chose the "${computerChoice}"</br>
+			You chose the "${playerChoice}"</br></br>
+			COMPUTER WIN!</p>
+		`;
 		computerScore = ++computerScore;
 	}
 
