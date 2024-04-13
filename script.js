@@ -1,5 +1,6 @@
 let computerChoice = "";
 let playerChoice = "";
+let score = document.querySelector("#score");
 let computerScore = 0;
 let playerScore = 0;
 
@@ -63,8 +64,6 @@ function getPlayerChoice() {
 }
 
 function playRound(computerChoice, playerChoice) {
-
-	const score = document.querySelector("#score");
 
 	if (computerChoice === playerChoice) {
 		score.innerHTML = `
