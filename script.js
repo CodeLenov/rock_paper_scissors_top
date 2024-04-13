@@ -66,16 +66,16 @@ function playRound(computerChoice, playerChoice) {
 
 	const score = document.querySelector("#score");
 
-	if (playerChoice === computerChoice) {
+	if (computerChoice === playChoice) {
 		score.innerHTML = `
 			<p>Computer chose the "${computerChoice}"</br>
 			You chose the "${playerChoice}"</br></br>
 			IT'S A DRAW!</p>
 		`;
 	} else if (
-		(playerChoice === "rock" && computerChoice === "scissors") || 
-		(playerChoice === "paper" && computerChoice === "rock") || 
-		(playerChoice === "scissors" && computerChoice === "paper") 
+		(computerChoice === "rock" && playChoice === "paper") || 
+		(computerChoice === "paper" && playChoice === "scissors") || 
+		(computerChoice === "scissors" && playChoice === "rock") 
 		) {
 		score.innerHTML = `
 			<p>Computer chose the "${computerChoice}"</br>
