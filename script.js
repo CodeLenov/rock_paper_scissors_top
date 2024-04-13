@@ -96,34 +96,63 @@ function playRound(computerChoice, playerChoice) {
 function playGame() {
 
 	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
+	score.innerHTML += `
+		<p>Computer : You</br>
+		${computerScore} : ${playerScore}</p>
+	`;
 	
 	computerChoice = getComputerChoice();
 	playerChoice = getPlayerChoice();
 	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
+	score.innerHTML += `
+		<p>Computer : You</br>
+		${computerScore} : ${playerScore}</p>
+	`;
 
 	computerChoice = getComputerChoice();
 	playerChoice = getPlayerChoice();
 	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
-	
+	score.innerHTML += `
+		<p>Computer : You</br>
+		${computerScore} : ${playerScore}</p>
+	`;
+
 	computerChoice = getComputerChoice();
 	playerChoice = getPlayerChoice();
 	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
-	
+	score.innerHTML += `
+		<p>Computer : You</br>
+		${computerScore} : ${playerScore}</p>
+	`;
+
 	computerChoice = getComputerChoice();
 	playerChoice = getPlayerChoice();
 	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
+	score.innerHTML += `
+		<p>Computer : You</br>
+		${computerScore} : ${playerScore}</p>
+	`;
 
 	if (computerScore === playerScore) {
-		console.log(`TOTAL SCORE\n\nIT'S A DRAW!\n\nYou can play new game\nReload the page`);
+		score.innerHTML += `
+			<p>TOTAL SCORE</br>
+			IT'S A DRAW!</br></br>You can play new game</br>
+			Reload the page</p>
+		`;
 	} else if (computerScore > playerScore) {
-		console.log(`TOTAL SCORE\n\nCOMPUTER WIN!\n\nYou can play new game\nReload the page`);
+		score.innerHTML += `
+			<p>TOTAL SCORE</br></br>
+			COMPUTER WIN!</br></br>
+			You can play new game</br>
+			Reload the page</p>
+		`;
 	} else {
-		console.log(`TOTAL SCORE\n\nYOU WIN!\n\nYou can play new game\nReload the page`);
+		score.innerHTML += `
+			<p>TOTAL SCORE</br></br>
+			YOU WIN!</br></br>
+			You can play new game</br>
+			Reload the page</br></p>
+		`;
 	}
 	
 }
