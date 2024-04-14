@@ -5,6 +5,8 @@ let score = document.querySelector("#score");
 let computerScore = 0;
 let playerScore = 0;
 
+startGame();
+
 function startGame() {
 
 	const start = document.querySelector("#start");
@@ -15,7 +17,37 @@ function startGame() {
 	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
 
 	start.addEventListener("click", () => {
+		round = 0;
+		score.innerHTML = ``;
 		getPlayerChoice();
+	}, {once:true});
+
+}
+
+function getPlayerChoice() {
+
+	const rock = document.querySelector("#rock");
+	const paper = document.querySelector("#paper");
+	const scissors = document.querySelector("#scissors");
+
+	getComputerChoice();
+
+	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	THEN invoke logics from playRound (or playGame).
+	Else it invoke logics from playRound (or playGame) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
+
+	rock.addEventListener("click", () => {
+		playerChoice = "rock";
+		playGame();
+	});
+	paper.addEventListener("click", () => {
+		playerChoice = "paper";
+		playGame();
+	});
+	scissors.addEventListener("click", () => {
+		playerChoice = "scissors";
+		playGame();
 	});
 
 }
@@ -37,60 +69,46 @@ function getComputerChoice() {
 
 }
 
-function getPlayerChoice() {
+function playGame() {
 
-	const rock = document.querySelector("#rock");
-	const paper = document.querySelector("#paper");
-	const scissors = document.querySelector("#scissors");
+	++round;
 
-	getComputerChoice();
-
-	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
-	THEN invoke logics from playRound (or playGame).
-	Else it invoke logics from playRound (or playGame) WITHOUT playerChoice VALUE (undefined).
-	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
-
-	rock.addEventListener("click", () => {
-		playerChoice = "rock";
-		round++;
-		playGame();
-	});
-	paper.addEventListener("click", () => {
-		playerChoice = "paper";
-		round++;
-		playGame();
-	});
-	scissors.addEventListener("click", () => {
-		playerChoice = "scissors";
-		round++;
-		playGame();
-	});
+	if (round < 5) {
+		playRound(playerChoice, computerChoice);
+	} else if (round === 5) {
+		playRound(playerChoice, computerChoice);
+		printTotalScore();
+	} else {
+		score.innerHTML += `
+			<p><em>You can play a new game | Press START</em></p><hr/>
+		`;
+	}
 
 }
 
-function playRound(computerChoice, playerChoice) {
+function playRound(playerChoice, computerChoice) {
 
-	if (computerChoice === playerChoice) {
-		//computerScore and playerScore are the same, they don"t change
+	if (playerChoice === computerChoice) {
+		//playerScore and computerScore are the same, they don"t change
 		score.innerHTML += `
-			<p>IT'S A DRAW! | Computer chose the "${computerChoice}" : You chose the "${playerChoice}"<br/>
-			${computerScore} : ${playerScore} | Computer : You</p><hr/>
+			<p>IT'S A DRAW! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
+			${playerScore} : ${computerScore} | You : Computer</p><hr/>
 		`;
 	} else if (
-		(computerChoice === "rock" && playerChoice === "paper") || 
-		(computerChoice === "paper" && playerChoice === "scissors") || 
-		(computerChoice === "scissors" && playerChoice === "rock") 
+		(playerChoice === "rock" && computerChoice === "scissors") || 
+		(playerChoice === "paper" && computerChoice === "rock") || 
+		(playerChoice === "scissors" && computerChoice === "paper") 
 		) {
-		playerScore = playerScore++; //only playerScore change, computerScore is the same
+		playerScore = ++playerScore; //only playerScore change, computerScore is the same
 		score.innerHTML += `
-			<p>YOU WIN! | Computer chose the "${computerChoice}" : You chose the "${playerChoice}"<br/>
-			${computerScore} : ${playerScore} | Computer : You</p><hr/>
+			<p>YOU WIN! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
+			${playerScore} : ${computerScore} | You : Computer</p><hr/>
 		`;
-	}	else {
-		computerScore = computerScore++; //only computerScore change, playerScore is the same
+	} else {
+		computerScore = ++computerScore; //only computerScore change, playerScore is the same
 		score.innerHTML += `
-			<p>COMPUTER WIN! | Computer chose the "${computerChoice}" : You chose the "${playerChoice}"<br/>
-			${computerScore} : ${playerScore} | Computer : You</p><hr/>
+			<p>COMPUTER WIN! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
+			${playerScore} : ${computerScore} | You : Computer</p><hr/>
 		`;
 	}
 
@@ -98,61 +116,23 @@ function playRound(computerChoice, playerChoice) {
 
 }
 
-function playGame() {
-
-	if (round < 5) {
-		playRound(computerChoice, playerChoice);
-	} else if (round = 5) {
-		playRound(computerChoice, playerChoice);
-		if (computerScore === playerScore) {
-			score.innerHTML += `
-				<p>TOTAL SCORE<br/>
-				IT'S A DRAW! | ${computerScore} : ${playerScore} | Computer : You</p><hr/>
-			`;
-		} else if (computerScore > playerScore) {
-			score.innerHTML += `
-				<p>TOTAL SCORE<br/>
-				COMPUTER WIN! | ${computerScore} : ${playerScore} | Computer : You</p><hr/>
-			`;
-		} else {
-			score.innerHTML += `
-				<p>TOTAL SCORE<br/>
-				YOU WIN! | ${computerScore} : ${playerScore} | Computer : You</p><hr/>
-			`;
-		}
-	} else {
-			score.innerHTML += `
-				<p>You can play new game<br/>
-				Press START<br/></p><hr/>
-			`;
-	}
-
-	/*computerChoice = getComputerChoice();
-	playerChoice = getPlayerChoice();
-	
+function printTotalScore() {
 
 	if (computerScore === playerScore) {
 		score.innerHTML += `
-			<p>TOTAL SCORE<br/>
-			IT'S A DRAW!<br/><br/>You can play new game<br/>
-			Reload the page</p>
+			<p><strong>IT'S A DRAW! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong></p><hr/>
+			<p><em>You can play a new game | Press START</em></p><hr/>
 		`;
-	} else if (computerScore > playerScore) {
+	} else if (playerScore > computerScore) {
 		score.innerHTML += `
-			<p>TOTAL SCORE<br/><br/>
-			COMPUTER WIN!<br/><br/>
-			You can play new game<br/>
-			Reload the page</p>
+			<p><strong>YOU WIN! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong></p><hr/>
+			<p><em>You can play a new game | Press START</em></p><hr/>
 		`;
 	} else {
 		score.innerHTML += `
-			<p>TOTAL SCORE<br/><br/>
-			YOU WIN!<br/><br/>
-			You can play new game<br/>
-			Reload the page<br/></p>
+			<p><strong>COMPUTER WIN! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong</p><hr/>
+			<p><em>You can play a new game | Press START</em></p><hr/>
 		`;
-	}*/
-	
-}
+	}
 
-startGame();
+}
