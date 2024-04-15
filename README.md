@@ -2,7 +2,7 @@
 Rock Paper Scissors | JavaScript, CSS, HTML | Front End Foundations Course (JavaScript, CSS, HTML, Git) | 03/05 | The Odin Project | 2024
 
 - We’re going to make an implementation of grade-school classic “rock paper scissors”.
-- If you don’t know what that is check the Wikipedia article `https://en.wikipedia.org/wiki/Rock%E2%80%93paper%E2%80%93scissors` or this `https://www.wikihow.com/Play-Rock,-Paper,-Scissors` detailed step-by-step.
+- If you don’t know what that is check the Wikipedia article https://en.wikipedia.org/wiki/Rock%E2%80%93paper%E2%80%93scissors or this https://www.wikihow.com/Play-Rock,-Paper,-Scissors detailed step-by-step.
 - For the moment we’re just going to play the game from the browser console, but
 - We will revisit this project in a later lesson and add a Graphical User Interface with buttons and text, so don’t forget to keep the code on GitHub!
 
@@ -43,7 +43,7 @@ Revisiting Rock Paper Scissors
 1. Set up a new branch on your previous Rock Paper Scissors repo
 	- Since we’ll be making a UI for our Rock Paper Scissors game, make a new branch and change to it with the command git checkout -b rps-ui.
 	- You are now working in the rps-ui branch, locally. However, this branch does not exist in your remote repo yet. If you go to your github repo page, you’ll see that you only have 1 branch, which would be main. Let’s push this new branch to your remote repo with the command git push origin rps-ui. Now, you’ll see two branches in your GitHub repository! You can select the new branch on GitHub using the dropdown branch selector shown in the screenshot below.
-	- Make sure you are on the rps-ui branch. You can check this, with the git branch command. The branch you are currently on will have an (*)asterisk next to it. If you’re in another branch for some reason, change to rps-ui with the command git checkout rps-ui. Now you’re all set to work on your new feature! Note: You can add files, commit to this branch, and push changes to your repo, just like you would with the main branch. Everything is the same except when you push the changes, you’d use git push origin rps-ui instead of git push origin main, since we’re pushing to our new branch.
+	- Make sure you are on the rps-ui branch. You can check this, with the git branch command. The branch you are currently on will have an (*) asterisk next to it. If you’re in another branch for some reason, change to rps-ui with the command git checkout rps-ui. Now you’re all set to work on your new feature! Note: You can add files, commit to this branch, and push changes to your repo, just like you would with the main branch. Everything is the same except when you push the changes, you’d use git push origin rps-ui instead of git push origin main, since we’re pushing to our new branch.
 
 2. In our UI, the player should be able to play the game by clicking on buttons rather than typing their answer in a prompt.
 	- For now, remove the logic that plays exactly five rounds.
