@@ -1,91 +1,142 @@
-let computerChoice = getComputerChoice();
-let playerChoice = getPlayerChoice();
+/* In assignment need the game once one player reaches 5 points. (It's a simple if/else in playGame). But game with only 5 rounds is more shorter and interesting */
+
+let computerChoice = "";
+let playerChoice = "";
+let round = 0;
+let score = document.querySelector("#score");
 let computerScore = 0;
 let playerScore = 0;
 
-function getComputerChoice() {
+startGame();
+getPlayerChoice();
 
-	const computerChoiceRandom = Math.random();
+function startGame() {
 
-	if (computerChoiceRandom < ( 1 / 3) ) {
-		return "rock";
-	} else if (computerChoiceRandom > ( 2 / 3) ) {
-		return "scissors";
-	} else {
-		return "paper";
-	}
+	const start = document.querySelector("#start");
+
+	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	THEN invoke logics from playGame (or playRound).
+	Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() )*/ 
+
+	start.addEventListener("click", () => {
+		round = 0;
+		computerScore = 0;
+		playerScore = 0;
+		score.innerHTML = ``;
+	});
 
 }
 
 function getPlayerChoice() {
 
-	const playerChoiceCaseInsensitive = prompt('Enter your choice: "rock", "paper" or "scissors"').toLowerCase();
-	
-	if ( 
-		(playerChoiceCaseInsensitive === "rock") || 
-		(playerChoiceCaseInsensitive === "paper") || 
-		(playerChoiceCaseInsensitive === "scissors")
-		) {
-		return playerChoiceCaseInsensitive;
-	} else {
-		return null;
-	}
+	const rock = document.querySelector("#rock");
+	const paper = document.querySelector("#paper");
+	const scissors = document.querySelector("#scissors");
+
+	getComputerChoice();
+
+	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	THEN invoke logics from playGame (or playRound).
+	Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() )*/ 
+
+	rock.addEventListener("click", () => {
+		playerChoice = "rock";
+		playGame();
+	});
+	paper.addEventListener("click", () => {
+		playerChoice = "paper";
+		playGame();
+	});
+	scissors.addEventListener("click", () => {
+		playerChoice = "scissors";
+		playGame();
+	});
 
 }
 
-function playRound() {
+function getComputerChoice() {
 
-	if (playerChoice === null) {
-		console.log(`You entered the undefined word\n\nPlease, enter one of these words:\n"rock", "paper" or "scissors"`);
-	} else if (playerChoice === computerChoice) {
-		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nIT'S A DRAW!`);
-	} else if (
-		(playerChoice === "rock" && computerChoice === "scissors") || 
-		(playerChoice === "paper" && computerChoice === "rock") || 
-		(playerChoice === "scissors" && computerChoice === "paper") 
-		) {
-		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nYOU WIN!`);
-		playerScore = ++playerScore;
-	}	else {
-		console.log(`Computer chose the "${computerChoice}"\nYou chose the "${playerChoice}"\n\nCOMPUTER WIN!`);
-		computerScore = ++computerScore;
+	const computerChoiceRandom = Math.random();
+
+	if (computerChoiceRandom < (1/3) ) {
+		computerChoice = "rock";
+		return computerChoice;
+	} else if (computerChoiceRandom > (2/3) ) {
+		computerChoice = "scissors";
+		return computerChoice;
+	} else {
+		computerChoice = "paper";
+		return computerChoice;
 	}
 
 }
 
 function playGame() {
 
-	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
-	
-	computerChoice = getComputerChoice();
-	playerChoice = getPlayerChoice();
-	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
+	++round;
 
-	computerChoice = getComputerChoice();
-	playerChoice = getPlayerChoice();
-	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
-	
-	computerChoice = getComputerChoice();
-	playerChoice = getPlayerChoice();
-	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
-	
-	computerChoice = getComputerChoice();
-	playerChoice = getPlayerChoice();
-	playRound();
-	console.log(`Computer : You\n\n${computerScore} : ${playerScore}`);
-
-	if (computerScore === playerScore) {
-		console.log(`TOTAL SCORE\n\nIT'S A DRAW!\n\nYou can play new game\nReload the page`);
-	} else if (computerScore > playerScore) {
-		console.log(`TOTAL SCORE\n\nCOMPUTER WIN!\n\nYou can play new game\nReload the page`);
+	if (round < 5) {
+		playRound(playerChoice, computerChoice);
+	} else if (round === 5) {
+		playRound(playerChoice, computerChoice);
+		printTotalScore();
 	} else {
-		console.log(`TOTAL SCORE\n\nYOU WIN!\n\nYou can play new game\nReload the page`);
+		score.innerHTML += `
+			<p><em>You can play a new game | Press START</em></p><hr/>
+		`;
 	}
-	
+
 }
 
-playGame();
+function playRound(playerChoice, computerChoice) {
+
+	if (playerChoice === computerChoice) {
+		//playerScore and computerScore are the same, they don"t change
+		score.innerHTML += `
+			<p>IT'S A DRAW! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
+			${playerScore} : ${computerScore} | You : Computer</p><hr/>
+		`;
+	} else if (
+		(playerChoice === "rock" && computerChoice === "scissors") || 
+		(playerChoice === "paper" && computerChoice === "rock") || 
+		(playerChoice === "scissors" && computerChoice === "paper") 
+		) {
+		playerScore = ++playerScore; //only playerScore change, computerScore is the same
+		score.innerHTML += `
+			<p>YOU WIN! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
+			${playerScore} : ${computerScore} | You : Computer</p><hr/>
+		`;
+	} else {
+		computerScore = ++computerScore; //only computerScore change, playerScore is the same
+		score.innerHTML += `
+			<p>COMPUTER WIN! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
+			${playerScore} : ${computerScore} | You : Computer</p><hr/>
+		`;
+	}
+
+	computerChoice = getComputerChoice();
+
+}
+
+function printTotalScore() {
+
+	if (computerScore === playerScore) {
+		score.innerHTML += `
+			<p><strong>IT'S A DRAW! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong></p><hr/>
+			<p><em>You can play a new game | Press START</em></p><hr/>
+		`;
+	} else if (playerScore > computerScore) {
+		score.innerHTML += `
+			<p><strong>YOU WIN! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong></p><hr/>
+			<p><em>You can play a new game | Press START</em></p><hr/>
+		`;
+	} else {
+		score.innerHTML += `
+			<p><strong>COMPUTER WIN! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong></p><hr/>
+			<p><em>You can play a new game | Press START</em></p><hr/>
+		`;
+	}
+
+}
