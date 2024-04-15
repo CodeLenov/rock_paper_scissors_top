@@ -1,3 +1,5 @@
+/* In assignment need the game once one player reaches 5 points. (It's a simple if/else in playGame). But game with only 5 rounds is more shorter and interesting */
+
 let computerChoice = "";
 let playerChoice = "";
 let round = 0;
