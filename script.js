@@ -6,21 +6,23 @@ let computerScore = 0;
 let playerScore = 0;
 
 startGame();
+getPlayerChoice();
 
 function startGame() {
 
 	const start = document.querySelector("#start");
 
 	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
-	THEN invoke logics from playRound (or playGame).
-	Else it invoke logics from playRound (or playGame) WITHOUT playerChoice VALUE (undefined).
-	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
+	THEN invoke logics from playGame (or playRound).
+	Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() )*/ 
 
 	start.addEventListener("click", () => {
 		round = 0;
+		computerScore = 0;
+		playerScore = 0;
 		score.innerHTML = ``;
-		getPlayerChoice();
-	}, {once:true});
+	});
 
 }
 
@@ -33,9 +35,9 @@ function getPlayerChoice() {
 	getComputerChoice();
 
 	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
-	THEN invoke logics from playRound (or playGame).
-	Else it invoke logics from playRound (or playGame) WITHOUT playerChoice VALUE (undefined).
-	SO we invoke playRound or playGame AFTER get playerChoice (in getPlayerChoice() )*/ 
+	THEN invoke logics from playGame (or playRound).
+	Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
+	SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() )*/ 
 
 	rock.addEventListener("click", () => {
 		playerChoice = "rock";
@@ -130,7 +132,7 @@ function printTotalScore() {
 		`;
 	} else {
 		score.innerHTML += `
-			<p><strong>COMPUTER WIN! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong</p><hr/>
+			<p><strong>COMPUTER WIN! | TOTAL SCORE | ${playerScore} : ${computerScore} | You : Computer</strong></p><hr/>
 			<p><em>You can play a new game | Press START</em></p><hr/>
 		`;
 	}
