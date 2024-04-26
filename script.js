@@ -1,4 +1,4 @@
-/* In assignment need the game once one player reaches 5 points. (It's a simple if/else in playGame). But game with only 5 rounds is more shorter and interesting */
+// In assignment need the game once one player reaches 5 points. (It's a simple if/else in playGame). But game with only 5 rounds is more shorter and interesting
 
 let computerChoice = "";
 let playerChoice = "";
@@ -14,10 +14,10 @@ function startGame() {
 
 	const start = document.querySelector("#start");
 
-	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
-	THEN invoke logics from playGame (or playRound).
-	Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
-	SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() )*/ 
+	// Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	// THEN invoke logics from playGame (or playRound).
+	// Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
+	// SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() ) 
 
 	start.addEventListener("click", () => {
 		round = 0;
@@ -36,10 +36,10 @@ function getPlayerChoice() {
 
 	getComputerChoice();
 
-	/*Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
-	THEN invoke logics from playGame (or playRound).
-	Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
-	SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() )*/ 
+	// Computer need FIRST received player choice from buttons ("rock", "paper", "scissors")
+	// THEN invoke logics from playGame (or playRound).
+	// Else it invoke logics from playGame (or playRound) WITHOUT playerChoice VALUE (undefined).
+	// SO we invoke playGame (or playRound) AFTER get playerChoice (in getPlayerChoice() ) 
 
 	rock.addEventListener("click", () => {
 		playerChoice = "rock";
@@ -93,7 +93,7 @@ function playGame() {
 function playRound(playerChoice, computerChoice) {
 
 	if (playerChoice === computerChoice) {
-		//playerScore and computerScore are the same, they don"t change
+		// playerScore and computerScore are the same, they don"t change
 		score.innerHTML += `
 			<p>IT'S A DRAW! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
 			${playerScore} : ${computerScore} | You : Computer</p><hr/>
@@ -103,13 +103,13 @@ function playRound(playerChoice, computerChoice) {
 		(playerChoice === "paper" && computerChoice === "rock") || 
 		(playerChoice === "scissors" && computerChoice === "paper") 
 		) {
-		playerScore = ++playerScore; //only playerScore change, computerScore is the same
+		playerScore = ++playerScore; // only playerScore change, computerScore is the same
 		score.innerHTML += `
 			<p>YOU WIN! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
 			${playerScore} : ${computerScore} | You : Computer</p><hr/>
 		`;
 	} else {
-		computerScore = ++computerScore; //only computerScore change, playerScore is the same
+		computerScore = ++computerScore; // only computerScore change, playerScore is the same
 		score.innerHTML += `
 			<p>COMPUTER WIN! | You chose the "${playerChoice}" : Computer chose the "${computerChoice}"<br/>
 			${playerScore} : ${computerScore} | You : Computer</p><hr/>
